@@ -3,7 +3,7 @@ name: Actualizar Horarios de Tren
 on:
   # Ejecución automáticatodos los lunes a las 8 AM UTC
   schedule:
-    - cron: '0 8 * * 1'
+    - cron: '0 3 * * 0'
   # 2. O permite que lo ejecutes manualmente con un click desde la web de GitHub
   workflow_dispatch:
 
@@ -25,11 +25,11 @@ jobs:
 
     - name: Instalar dependencias
       run: |
-        pip install -r .\utils\requirements.txt
+        pip install -r utils/requirements.txt
 
     - name: Correr script de procesamiento
       run: |
-        python .\code\procesar_horarios.py
+        python code/procesar_horarios.py
 
     - name: Guardar cambios (Commit & Push)
       run: |
