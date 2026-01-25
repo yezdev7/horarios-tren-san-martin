@@ -1,0 +1,40 @@
+name: Actualizar Horarios de Tren
+
+on:
+  # Ejecución automáticatodos los lunes a las 8 AM UTC
+  schedule:
+    - cron: '0 8 * * 1'
+  # 2. O permite que lo ejecutes manualmente con un click desde la web de GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Chequear el repositorio
+      uses: actions/checkout@v3
+
+    - name: Instalar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Instalar dependencias
+      run: |
+        pip install -r requirements.txt
+
+    - name: Correr script de procesamiento
+      run: |
+        python procesar_horarios.py
+
+    - name: Guardar cambios (Commit & Push)
+      run: |
+        git config --global user.name 'yezdev7'
+        git config --global user.email 'yezdev7@github.com'
+        git add *.json
+        # Solo hace commit si hubo cambios reales en los archivos
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Actualización automática de horarios" && git push)
