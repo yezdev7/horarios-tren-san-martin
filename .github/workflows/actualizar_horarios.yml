@@ -25,11 +25,11 @@ jobs:
 
     - name: Instalar dependencias
       run: |
-        pip install -r requirements.txt
+        pip install -r .\utils\requirements.txt
 
     - name: Correr script de procesamiento
       run: |
-        python procesar_horarios.py
+        python .\code\procesar_horarios.py
 
     - name: Guardar cambios (Commit & Push)
       run: |
