@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios San Martín</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="app-container">
+        
+        <section id="screen-home" class="screen">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar modo oscuro">🌙</button>
+
+            <header class="main-header">
+                <h1>Trenes Argentinos</h1>
+                <h2>Línea San Martín</h2>
+                
+                <div class="hero-clock-container">
+                    <span id="clock-time-1" class="clock-time-hero">--:--</span>
+                    <span id="clock-date-1" class="clock-date-hero">--/--/----</span>
+                    <p class="subtitle-hero">Consulta los horarios de los próximos servicios</p>
+                </div>
+            </header>
+
+            <div class="content-center">
+                <label class="input-label">¿Desde qué estación deseas viajar?</label>
+                
+                <div class="select-wrapper">
+                    <select id="station-select">
+                        <option value="" disabled selected>Seleccione una estación</option>
+                    </select>
+                    <span class="chevron-icon">▼</span>
+                </div>
+                <p id="error-msg" class="error-text hidden">⚠ Debes seleccionar una estación</p>
+
+                <div class="toggle-wrapper">
+                    <input type="checkbox" id="holiday-check" class="hidden-checkbox">
+                    <label for="holiday-check" class="custom-checkbox">
+                        <span class="checkbox-icon">☐</span>
+                        <span>¿Es Feriado?</span>
+                    </label>
+                </div>
+
+                <button id="btn-search" class="btn-primary">Ver Horarios</button>
+            </div>
+
+            <footer class="main-footer">
+                <a href="#" class="pdf-link">Ver grilla de horarios (PDF)</a>
+                <a href="#" class="terms-link">Términos y Condiciones</a>
+            </footer>
+        </section>
+
+        <section id="screen-results" class="screen hidden">
+            <header class="results-header">
+                <div class="header-top">
+                    <span class="brand-small">Línea San Martín</span>
+                    <button id="btn-back" class="btn-back">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Regresar
+                    </button>
+                </div>
+
+                <div class="station-status-row">
+                    <div class="station-info-block">
+                        <span class="status-label">Estás en</span>
+                        <h1 id="display-station" class="station-name-large">...</h1>
+                    </div>
+
+                    <div class="clock-center-container">
+                        <span id="clock-time-2" class="clock-blue">--:--</span>
+                    </div>
+
+                    <button id="btn-refresh" class="btn-refresh" aria-label="Actualizar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 4v6h-6"></path>
+                            <path d="M1 20v-6h6"></path>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="results-container">
+                
+                <article class="schedule-card" id="card-cabred">
+                    <div class="card-header">
+                        <span class="direction-label">Hacia</span>
+                        <h3 class="destination">--</h3>
+                    </div>
+                    
+                    <div class="time-display-column">
+                        <span class="time-sub">Llega en</span>
+                        <span class="time-big" id="time-cabred">-- min</span>
+                        <span class="arrival-time">Arribo: --:-- hs</span>
+                    </div>
+
+                    <div class="flow-viz">
+                        <span class="station-node prev">-</span>
+                        <span class="arrow">→</span>
+                        <span class="station-node current">-</span>
+                        <span class="arrow">→</span>
+                        <span class="station-node next">-</span>
+                    </div>
+
+                    <div class="next-departures">
+                        <div class="next-item">
+                            <span>Cargando servicios...</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="schedule-card" id="card-retiro">
+                    <div class="card-header">
+                        <span class="direction-label">Hacia</span>
+                        <h3 class="destination">--</h3>
+                    </div>
+                    
+                    <div class="time-display-column">
+                        <span class="time-sub">Llega en</span>
+                        <span class="time-big" id="time-retiro">-- min</span>
+                        <span class="arrival-time">Arribo: --:-- hs</span>
+                    </div>
+
+                    <div class="flow-viz">
+                        <span class="station-node prev">-</span>
+                        <span class="arrow">←</span>
+                        <span class="station-node current">-</span>
+                        <span class="arrow">←</span>
+                        <span class="station-node next">-</span>
+                    </div>
+
+                    <div class="next-departures">
+                        <div class="next-item">
+                            <span>Cargando servicios...</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <footer class="main-footer footer-results">
+                <a href="#" class="pdf-link">Ver grilla de horarios (PDF)</a>
+                <a href="#" class="terms-link">Términos y Condiciones</a>
+            </footer>
+        </section>
+
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
