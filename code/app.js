@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // INTENTA CARGAR LOS JSON
             // Ajusta la ruta si es necesario. Si usas Live Server, '../data/' sale de la carpeta code.
             const [resCabred, resRetiro] = await Promise.all([
-                fetch('../data/db_tren_destino_cabred.json'),
-                fetch('../data/db_tren_destino_retiro.json')
+                fetch('data/db_tren_destino_cabred.json'),
+                fetch('data/db_tren_destino_retiro.json')
             ]);
 
             if (!resCabred.ok || !resRetiro.ok) {
